@@ -43,5 +43,8 @@ jobs:
         push: true
         tags: chandra25ms/springboot-helloworld:latest
 
-    
-        
+    - name: Run Helloworld Application
+      run: |
+            docker run --name hello -i chandra25ms/springboot-helloworld:latest
+            docker logs hello > hello.txt
+            cat hello.txt
