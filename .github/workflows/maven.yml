@@ -25,15 +25,23 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
 
-
     - name: docker login
       uses: docker/login-action@v1
       with:
         username: ${{ secrets.DOCKER_USER }}
         password: ${{ secrets.DOCKER_PASSWORD }}
-  
+
+    - name: Build and push
+      id: docker_build
+      uses: docker/build-push-action@v2
+      with:
+        push: true
+        tags: chandra25ms/springboot-helloworld:latest
+
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag chandra25ms/Helloworld-springboot
+      run: |
+         docker build . --file Dockerfile --tag chandra25ms/Helloworld-springboot
+         docker images 
       
     - name: Docker Push
       run: | 
