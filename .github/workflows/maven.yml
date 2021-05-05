@@ -28,7 +28,7 @@ jobs:
       run: mvn -B package --file pom.xml
       
     - name: Run the Helloworld App
-      run: java -jar 
+      run: java -jar helloworld.jar
 
     - name: docker login
       uses: docker/login-action@v1
