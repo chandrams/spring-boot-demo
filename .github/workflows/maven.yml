@@ -27,6 +27,14 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
       
+    - name: Cache local Maven repository
+      uses: actions/cache@v2
+      with:
+        path: ~/.m2/repository
+        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+        restore-keys: |
+             ${{ runner.os }}-maven-
+      
     - name: docker login
       uses: docker/login-action@v1
       with:
@@ -72,7 +80,7 @@ jobs:
     - name: Create and expose app
       uses: redhat-actions/oc-new-app@v1
       with:
-        app_name: petclinic
+        app_name: helloworld
         image: docker.io/chandra25ms/springboot-helloworld:latest
         namespace: ${{ env.OPENSHIFT_NAMESPACE }}
         port: 8080
