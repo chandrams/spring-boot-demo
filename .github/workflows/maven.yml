@@ -26,6 +26,9 @@ jobs:
         
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+      
+    - name: Run the Helloworld App
+      run: java -jar 
 
     - name: docker login
       uses: docker/login-action@v1
@@ -40,12 +43,5 @@ jobs:
         push: true
         tags: chandra25ms/springboot-helloworld:latest
 
-    - name: Build the Docker image
-      run: |
-         docker build . --file Dockerfile --tag chandra25ms/Helloworld-springboot
-         docker images 
-      
-    - name: Docker Push
-      run: | 
-        docker push chandra25ms/Helloworld-springboot
+    
         
