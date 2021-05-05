@@ -27,11 +27,6 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
       
-    - name: Run the Helloworld App
-      run: |
-         ls
-         java -jar target/helloworld-0.0.1-SNAPSHOT.jar
-
     - name: docker login
       uses: docker/login-action@v1
       with:
