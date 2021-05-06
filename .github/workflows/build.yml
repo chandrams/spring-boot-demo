@@ -47,5 +47,10 @@ jobs:
       with:
         push: true
         tags: chandra25ms/springboot-helloworld:latest
+        
+    - name: Run the springboot hello world
+      run: |
+        docker run --name hello -t chandra25ms/springboot-helloworld:latest
+        docker logs hello
 
   
